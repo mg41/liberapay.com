@@ -19,6 +19,9 @@ participant = get_participant(state, restrict=True)
 if participant.kind not in ('individual', 'organization'):
     raise response.error(403)
 
+if not participant.mangopay_user_id:
+    raise response.error(403)
+
 title = participant.username
 error, success = '', ''
 
